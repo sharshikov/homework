@@ -6,10 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.swing.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -66,30 +69,29 @@ public class Autotest {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(".//*[@class='modal-title']/b"))));
         String exptectedTitle = driver.findElement(By.xpath(".//*[@class='modal-title']/b")).getText();
         assertEquals("У модального окна не правильный заголовок h4","Заявка на добровольное медицинское страхование", exptectedTitle);
-        //driver.findElement(By.xpath(".//label[text()='Фамилия']/following-sibling::input")).sendKeys("Иванов");
-        driver.findElement(By.name("LastName")).sendKeys("Иванов");
-        driver.findElement(By.name("FirstName")).sendKeys("Иван");
-        driver.findElement(By.name("MiddleName")).sendKeys("Иванович");
+
+        fillField(".//*[@name='LastName']","Тестов");
+        fillField(".//*[@name='FirstName']","Тест");
+        fillField(".//*[@name='MiddleName']","Тестович");
         WebElement element = driver.findElement(By.name("Region"));
         Select select = new Select(element);
         select.selectByVisibleText("Тверская область");
-
-        select.getFirstSelectedOption();
-        driver.findElement(By.xpath(".//label[text()='Телефон']/following-sibling::input")).sendKeys("9999999999");
-
-        driver.findElement(By.name("Email")).sendKeys("qwertyqwerty");
-        driver.findElement(By.name("Comment")).sendKeys("Ok");
-        driver.findElement(By.className("checkbox")).click();
-        assertEquals("Иванов", driver.findElement(By.name("LastName")).getAttribute("value"));
-        assertEquals("Иван", driver.findElement(By.name("FirstName")).getAttribute("value"));
-        assertEquals("Иванович", driver.findElement(By.name("MiddleName")).getAttribute("value"));
-
-        assertEquals("+7 (999) 999-99-99",driver.findElement(By.xpath(".//label[text()='Телефон']/following-sibling::input")).getAttribute("value"));
-        assertEquals("qwertyqwerty", driver.findElement(By.name("Email")).getAttribute("value"));
-        assertEquals("Ok", driver.findElement(By.name("Comment")).getAttribute("value"));
-        driver.findElement(By.id("button-m")).click();
+        fillField(".//*[@name='Email']","qwertyqwerty");
+        fillField(".//*[@class='form-control']","9999999999","+7 (999) 999-99-99");
+        fillField(".//*[@name='Comment']","Ok");
+        driver.findElement(By.xpath(".//input[contains(@data-bind, 'IsProcessingPersonalData')]")).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(".//*[@class='validation-error-text']"))));
+        Assert.assertEquals("ошибка","Введите адрес электронной почты",driver.findElement(By.xpath(".//*[@class='validation-error-text']")).getText());
         System.out.println("Ура мы открыли rgs");
     }
-
-
+    private void fillField(String xpath,String valueInput, String valueCheck ){
+        WebElement el = driver.findElement(By.xpath(xpath));
+        el.clear();
+        Actions act = new Actions(driver);
+        act.moveToElement(el).click().sendKeys(valueInput).perform();
+        Assert.assertEquals("ошибка",valueCheck,el.getAttribute("value"));
+    }
+    private void fillField(String xpath,String value){
+        fillField(xpath,value,value);
+    }
 }
