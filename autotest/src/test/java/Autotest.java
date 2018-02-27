@@ -59,7 +59,7 @@ public class Autotest {
     }
 
     @Test
-    public void test1() {
+    public void fillFormDms() {
         WebElement navbar = driver.findElement(By.xpath(".//div[contains(@id, 'main-navbar')]"));
         navbar.findElement(By.xpath(".//a[contains(text(), 'Страхование')]")).click();
         navbar.findElement(By.xpath(".//a[contains(text(), 'ДМС')]")).click();
