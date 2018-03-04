@@ -29,8 +29,8 @@ public class SearchPage {
     })
     private List<WebElement> hrefElectronics;
     @FindAll({
-            @FindBy(xpath = ".//input[@id='header-search']"),
-            @FindBy(xpath = ".//*[contains(@href,'hid=198119')]")
+            @FindBy(xpath = ".//*[contains(@class,'n-navigation-vertical-category__link link i-bem')]//*[text()='Электроника']"),
+            @FindBy(xpath = ".//*[contains(@class,'title title_size_32 i-bem title_')]")
     })
     private List<WebElement> hrefElectronics2Step;
 
@@ -55,11 +55,10 @@ public class SearchPage {
     @FindBy(xpath = ".//*[contains(@class,'button_action_show-filtered n-filter-panel-extend')]")
     private WebElement button;
 
-
-
     public void search(String priceTo,String electronics,String... proizvoditel){
         hrefMarket.click();
         hrefElectronics.get(0).click();
+        wait.until(ExpectedConditions.visibilityOf(hrefElectronics2Step.get(0)));
         hrefElectronics2Step.get(0).click();
         choiceElelectronics(hrefListElectronics,electronics);
         buttonAllFilters.click();
