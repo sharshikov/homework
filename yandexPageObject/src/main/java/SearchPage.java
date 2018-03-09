@@ -57,7 +57,7 @@ public class SearchPage {
 
     public void search(String priceTo,String electronics,String... proizvoditel){
         hrefMarket.click();
-        hrefElectronics.get(0).click();
+        hrefElectronics.get(0).click();//для двух сценариев открытия маркета
         wait.until(ExpectedConditions.visibilityOf(hrefElectronics2Step.get(0)));
         hrefElectronics2Step.get(0).click();
         choiceElelectronics(hrefListElectronics,electronics);

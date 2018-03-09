@@ -1,9 +1,9 @@
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+        import java.io.IOException;
+        import java.util.Properties;
 
 public class TestProperties {
-   static Properties property = new Properties();
+    static Properties property = new Properties();
     private TestProperties() {
         try {
             property.load(new FileInputStream("src/main/resources/app.properties"));
