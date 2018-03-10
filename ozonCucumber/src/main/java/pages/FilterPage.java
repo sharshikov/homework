@@ -26,7 +26,7 @@ public class FilterPage extends BasePage {
     @FindBy(xpath = ".//input[@class='eFilterList_SearchInput']")
     private WebElement inputManufcturer;
 
-    @FindBy(xpath = ".//a[@class='eFilterList_OptionLink']")
+    @FindBy(xpath = ".//*[@class='eFilterList_OptionLink']")
     private List<WebElement> manufcturer;
 
     @FindBy(xpath = ".//input[@class='eFromToInput_InputField mFrom']")

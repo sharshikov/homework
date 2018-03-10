@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -30,13 +31,18 @@ public class CartPage extends BasePage {
     @FindBy(xpath = ".//div[@class='eShelfBlock_title']")
     private WebElement check2;
     @FindBy(xpath = ".//span[@class='eCartItem_nameValue']")
+
     private WebElement nameElementInCart;
     @FindBy(xpath = ".//div[@class='eCartItem_price']")
     private WebElement priceElementInCart;
 
 
     public void checkElement(){
-        Assert.assertEquals("Ошибка",elementInCart.getAttribute("data-id"),reportPage.idElement);
+        String[] price =priceElementInCart.getText().split(" руб");
+        String pric = price[0];
+        System.out.println(pric);
+        Assert.assertEquals("Название добавленного элемента не соответсвует названию элемента в корзине",nameElementInCart.getText(),reportPage.name);
+        Assert.assertEquals("Цена добавленного элемента не сотвествует цене элемента в корзине",pric,reportPage.price);
     }
     public void removeAll() {
         wait.until(ExpectedConditions.visibilityOf(check2));

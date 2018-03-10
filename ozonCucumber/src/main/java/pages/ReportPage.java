@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -20,16 +21,27 @@ public class ReportPage {
     @FindBy(xpath = ".//a[@href='/context/cart']")
     private WebElement toCart;
 
-    public static String nameElement;
-    public static String priceElement;
-    public static String idElement;
+    @FindBy(xpath = ".//*[@class='bItemName']")
+    private WebElement nameElement;
+
+    @FindBy(xpath = ".//*[@class='eOzonPrice_main']")
+    private WebElement priceElement;
+
+    @FindBy(xpath = ".//*[@class='eOzonPrice_submain']")
+    private WebElement subPriceElement;
+
+    public static String price;
+    public static String name;
 
     public void addFirstElementToCart(){
-        idElement = element.get(0).getAttribute("data-itemid");
-        nameElement=element.get(0).getAttribute("data-name");
-        priceElement=element.get(0).getAttribute("data-price");
         element.get(0).click();
         buttonAddToCart.click();
+        name = nameElement.getText();
+        try {
+            price = priceElement.getText()+","+subPriceElement.getText();
+        }catch (NoSuchElementException e){
+            price = priceElement.getText()+",00";
+        }
     }
     public void toCart(){
         toCart.click();

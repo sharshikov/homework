@@ -39,7 +39,7 @@ public class BaseSteps {
         }
         baseUrl = properties.getProperty("app.url");
         System.out.println(baseUrl);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(baseUrl);
     }

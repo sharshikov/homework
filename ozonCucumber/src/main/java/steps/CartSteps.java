@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 public class CartSteps {
     CartPage cartPage = new CartPage();
-    @Step("выполнена проверка")
+    @Step("выполнена проверка есть ли элемент в корзине")
     public void checkElement(){cartPage.checkElement();}
     @Step("выполнено нажатие на кнопку удалить все")
     public void removeAll(){cartPage.removeAll();}

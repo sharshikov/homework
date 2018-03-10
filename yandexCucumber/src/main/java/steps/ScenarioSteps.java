@@ -48,10 +48,10 @@ public class ScenarioSteps {
     @When("^выполнено нажатие на кнопку показать подходящие$")
     public void showList(){ filterSteps.showList(); }
 
-    @When("^выполнено нажатие на кнопку показать по 12$")
-    public void searchButton(){reportSteps.searchButton();}
+    @When("^выполнено нажатие на кнопку показать по 12, если существует кнопка и проверяем кол-во элментов$")
+    public void searchButton12(){reportSteps.searchButton12();}
 
-    @Then("^проверяем значение$")
-    public void inputName (){ reportSteps.inputName();
+    @Then("^проверяем есть ли элемент в результате поиска$")
+    public void check (){ reportSteps.check();
     }
 }

@@ -5,12 +5,12 @@ import pages.ReportPage;
 
 public class ReportSteps {
     ReportPage report = new ReportPage();
-    @Step("находим кнопку")
-    public void searchButton(){
-        report.searchButton();
+    @Step("выполнено нажатие на кнопку показать по 12, если существует кнопка и проверяем кол-во элментов")
+    public void searchButton12(){
+        report.searchButton12();
     }
-    @Step("проверяем значение {0}")
-    public void inputName (){
-        report.inputName();
+    @Step("проверяем есть ли элемент в результате поиска")
+    public void check (){
+        report.check();
     }
 }

@@ -42,7 +42,7 @@ public class ScenarioSteps {
     @When("^выполнено нажатие на кнопку корзина$")
     public void toCart(){reportSteps.toCart();}
 
-    @When("^выполнена проверка$")
+    @When("^выполнена проверка есть ли элемент в корзине$")
     public void checkElement(){cartSteps.checkElement();}
 
     @When("^выполнено нажатие на кнопку удалить все$")
