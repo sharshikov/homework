@@ -13,13 +13,19 @@ public class Calc {
         b = scanner.nextDouble();
         System.out.print("Введите оператор: ");
         c = scanner.next();
-        System.out.printf("Результат: %.2f",res(a,b,c));
+        System.out.printf("Результат: %.4f",res(a,b,c));
     }
     Calc(){
 
     }
 
-
+    /**
+     *
+     * @param num1 first operand
+     * @param num2 second operand
+     * @param c operator
+     * @return result of calculation
+     */
     public double res(double num1, double num2, String c) {
         switch(c) {
             case "+":
