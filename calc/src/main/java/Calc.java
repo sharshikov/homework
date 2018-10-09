@@ -13,21 +13,21 @@ public class Calc {
         b = scanner.nextDouble();
         System.out.print("Введите оператор: ");
         c = scanner.next();
-        System.out.printf("Результат: %.4f",res(a,b,c));
+        System.out.printf("Результат: %.4f", res(a, b, c));
     }
-    Calc(){
+
+    Calc() {
 
     }
 
     /**
-     *
      * @param num1 first operand
      * @param num2 second operand
-     * @param c operator
+     * @param c    operator
      * @return result of calculation
      */
     public double res(double num1, double num2, String c) {
-        switch(c) {
+        switch (c) {
             case "+":
                 result = num1 + num2;
                 break;
@@ -38,6 +38,13 @@ public class Calc {
                 result = num1 * num2;
                 break;
             case "/":
+                try {
+                    if (num2 == 0) {
+                        throw new ArithmeticException();
+                    }
+                }catch (ArithmeticException e){
+                    System.out.println("На ноль делить нельзя");
+                }
                 result = num1 / num2;
                 break;
             default:

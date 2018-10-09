@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import javax.swing.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by aasx .
